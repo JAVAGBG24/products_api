@@ -1,5 +1,35 @@
 # Products API
 
+# Innan du gör nåt annat se till att:
+1. Du har en **application.yaml** fil i din **resources** folder och att du har DELETE application.properties filen, du kan inte ha båda!
+2. Se också till du har Dockerfile och docker-compose.yaml i root foldern
+
+# Fixa connection till mongoDB compass
+1. I compass välj "New Connection"
+2. Lägg den här urlen som connection string:
+```mongodb://myuser:mypassword@localhost:27017/demodb?authSource=admin```
+3. Editera connection välj **Advanced Connection Options** och väl **Authentication** ta bort user name och password så input är tomt
+4. Klicka på save & connect, tips döp om din connection innan.
+5. Öppna mongosh i din connection och kör:
+```
+db.getSiblingDB('admin').createUser(
+{
+user:"myuser",
+pwd:"mypassword",
+roles: ["root"]
+})
+```
+Du ska få svar typ nåt sånt här ok 1.
+
+6. stäng ner Compass
+7. starta Docker, till att du är i din projekt folder och kör **docker-compose up -d**
+8. starta **Compass** igen och gå in i **Advanced Connection Options** på din Docker connection.
+9. ändra tillbaka **Authentication** fyll i user och password:
+```
+user: myuser
+password: mypassword
+```
+
 ## Query methods
 Query methods är en riktigt bra del av Spring Data MongoDB som bygger på 
 något som kallas för "method name parsing".
