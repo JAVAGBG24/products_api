@@ -13,6 +13,7 @@ public class Product {
     @NotEmpty(message = "Title can not be empty")
     private String name;
 
+
     private String description;
 
     private String color;
@@ -44,11 +45,11 @@ public class Product {
         this.name = name;
     }
 
-    public @NotNull(message = "Title can not be null") @NotEmpty(message = "Title can not be empty") @Max(value = 50) String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(@NotNull(message = "Title can not be null") @NotEmpty(message = "Title can not be empty") @Max(value = 50) String description) {
+    public void setDescription (String description) {
         this.description = description;
     }
 
