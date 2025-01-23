@@ -12,6 +12,14 @@ public class ProductService {
 
     public Product createProduct(Product product) {
         // kolla name, price och stockQuantity
+       validateProduct(product);
+
+        return productRepository.save(product);
+    }
+
+
+
+    private void validateProduct(Product product) {
         if(product.getName() == null || product.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("Product name can not be empty or null.");
         }
@@ -23,9 +31,22 @@ public class ProductService {
         if(product.getStockQuantity() < 0) {
             throw new IllegalArgumentException("Product stockQuantity can not be less than 0.");
         }
-
-        return productRepository.save(product);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
